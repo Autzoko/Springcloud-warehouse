@@ -8,8 +8,9 @@
     <artifactId>springcloud-warehouse</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>payment-service</module>
+        <module>transaction-service</module>
         <module>common-utils</module>
+        <module>user-service</module>
     </modules>
     <version>1.0-SNAPSHOT</version>
 

@@ -1,4 +1,4 @@
-package org.longman.microservice;
+package org.longman.user;
 
 public class Main {
     public static void main(String[] args) {

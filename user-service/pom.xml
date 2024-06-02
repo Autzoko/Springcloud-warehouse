@@ -9,25 +9,8 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>org.longman.microservice</groupId>
-    <artifactId>payment-service</artifactId>
-
-    <dependencies>
-        <!-- springboot developer tools -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <version>3.2.6</version>
-        </dependency>
-
-        <!-- druid sql pool -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid-spring-boot-starter</artifactId>
-            <version>1.2.19</version>
-        </dependency>
-
-    </dependencies>
+    <groupId>org.longman.user</groupId>
+    <artifactId>user-service</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

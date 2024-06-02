@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.longman.microservice.mapper.TransactionMapper">
+    <select id="findByProviderId" resultType="org.longman.microservice.entity.TransactionEntity">
+        SELECT * FROM `warehouse_transaction`
+        <where>
+            <if test="providerId != null">
+                `provider_id` = #{providerId}
+            </if>
+        </where>
+    </select>
+
+    <select id="findByConsumerId" resultType="org.longman.microservice.entity.TransactionEntity">
+        SELECT * FROM `warehouse_transaction`
+        <where>
+            <if test="consumerId != null">
+                `consumer_id` = #{consumerId}
+            </if>
+        </where>
+    </select>
+
+    <select id="findByCommodityId" resultType="org.longman.microservice.entity.TransactionEntity">
+        SELECT * FROM `warehouse_transaction`
+        <where>
+            <if test="commodityId != null">
+                `commodity_id` = #{commodityId}
+            </if>
+        </where>
+    </select>
+</mapper>
