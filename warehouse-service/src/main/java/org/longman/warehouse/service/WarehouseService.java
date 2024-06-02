@@ -10,7 +10,7 @@ public interface WarehouseService {
 
     void updateWarehouse(WarehouseEntity warehouse);
 
-    void updateWarehouseStock(Long warehouseId, Integer stock);
+    void updateWarehouseStock(Long warehouseId, Long stock);
 
     void deleteWarehouse(Long warehouseId);
 
