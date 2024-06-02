@@ -15,4 +15,6 @@ public class ServiceUrls {
     public static final String WAREHOUSE_SERVICE_URL = "http://localhost:8003/warehouse";
 
     public static final String COMMODITY_SERVICE_URL = "http://localhost:8003/commodity";
+
+    public static final String USER_SERVICE_URL = "http://localhost:8877/user";
 }
