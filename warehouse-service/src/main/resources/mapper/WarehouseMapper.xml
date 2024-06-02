@@ -19,4 +19,12 @@
             </if>
         </where>
     </select>
+
+    <update id="updateWarehouseStock">
+        UPDATE `warehouse_warehouse`
+        SET
+            `stock` = #{stock}
+        WHERE
+            `id` = #{warehouseId}
+    </update>
 </mapper>

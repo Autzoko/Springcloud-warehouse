@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.longman.warehouse.mapper.CommodityMapper">
+
+    <select id="findByOwnerId" resultType="org.longman.entity.CommodityEntity">
+        SELECT * FROM `warehouse_commodity`
+        <where>
+            <if test="ownerId != null">
+                `owner_id` = #{ownerId}
+            </if>
+        </where>
+    </select>
+
+    <select id="findByWarehouseId" resultType="org.longman.entity.CommodityEntity">
+        SELECT * FROM `warehouse_commodity`
+        <where>
+            <if test="warehouseId != null">
+                `warehouse_id` = #{warehouseId}
+            </if>
+        </where>
+    </select>
+
+    <select id="getCommodityStock" resultType="java.lang.Long">
+        SELECT `stock` FROM `warehouse_commodity`
+        <where>
+            <if test="commodityId != null">
+                `id` = #{commodityId}
+            </if>
+        </where>
+    </select>
+
+    <update id="updateCommodityStock">
+        UPDATE `warehouse_commodity`
+        <if test="stock != null">
+            SET `stock` = #{stock}
+        </if>
+        WHERE
+            `id` = #{commodityId}
+    </update>
+
+    <update id="updateCommodityPrice">
+        UPDATe `warehouse_commodity`
+        <if test="price != null">
+            SET `price` = #{price}
+        </if>
+        WHERE
+            `id` = #{commodityId}
+    </update>
+
+</mapper>

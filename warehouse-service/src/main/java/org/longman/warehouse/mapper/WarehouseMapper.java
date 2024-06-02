@@ -13,4 +13,6 @@ public interface WarehouseMapper extends BaseMapper<WarehouseEntity> {
 
     Long getWarehouseStock(Long warehouseId);
 
+    void updateWarehouseStock(Long warehouseId, Long stock);
+
 }
