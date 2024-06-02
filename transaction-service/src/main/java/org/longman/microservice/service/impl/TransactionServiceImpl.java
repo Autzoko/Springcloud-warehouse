@@ -2,18 +2,20 @@ package org.longman.microservice.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import lombok.RequiredArgsConstructor;
-import org.apache.ibatis.transaction.Transaction;
 import org.longman.exception.IdConflictException;
 import org.longman.exception.MissingFieldException;
-import org.longman.microservice.entity.TransactionEntity;
+import org.longman.entity.TransactionEntity;
 import org.longman.microservice.mapper.TransactionMapper;
 import org.longman.microservice.service.TransactionService;
+import org.longman.utils.WarehouseMetaObjectHandler;
+import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Import(WarehouseMetaObjectHandler.class)
 public class TransactionServiceImpl implements TransactionService {
 
     private final TransactionMapper transactionMapper;

@@ -1,4 +1,4 @@
-package org.longman.microservice.entity.dto;
+package org.longman.entity.dto;
 
 import lombok.Getter;
 import lombok.Setter;

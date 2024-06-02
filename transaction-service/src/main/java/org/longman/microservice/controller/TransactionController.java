@@ -2,12 +2,11 @@ package org.longman.microservice.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.transaction.Transaction;
 import org.longman.exception.IdConflictException;
 import org.longman.exception.JsonDataError;
 import org.longman.exception.MissingFieldException;
-import org.longman.microservice.entity.TransactionEntity;
-import org.longman.microservice.entity.dto.TransactionDto;
+import org.longman.entity.TransactionEntity;
+import org.longman.entity.dto.TransactionDto;
 import org.longman.microservice.service.TransactionService;
 import org.longman.utils.BaseController;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +20,7 @@ import java.util.UUID;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/pay")
+@RequestMapping("/transaction")
 public class TransactionController extends BaseController {
 
     private final TransactionService transactionService;
@@ -61,7 +60,7 @@ public class TransactionController extends BaseController {
     }
 
     @GetMapping("/fetch-transaction")
-    public ResponseEntity<Object> fetchTransactionByConsumerId(@RequestParam Long id) {
+    public ResponseEntity<Object> fetchTransactionByConsumerId(@RequestParam(name = "id") Long id) {
         // here need to check this user whether is existed, function not implemented, currently skipped
         try {
             List<TransactionEntity> transactions = transactionService.getTransactionsByConsumerId(id);
@@ -76,8 +75,20 @@ public class TransactionController extends BaseController {
         }
     }
 
+    @DeleteMapping("/delete")
+    public ResponseEntity<Object> deleteTransaction(@RequestParam(name = "id") String id) {
+        try {
+            transactionService.deleteTransaction(id);
+            return success("delete success");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            log.error(e.getMessage());
+            return fail(e.getMessage());
+        }
+    }
+
     @GetMapping("/fetch-provider-transaction")
-    public ResponseEntity<Object> fetchTransactionByProviderId(@RequestParam Long id) {
+    public ResponseEntity<Object> fetchTransactionByProviderId(@RequestParam(name = "id") Long id) {
         // here need to check this user whether is existed, function not implemented, currently skipped
         try {
             List<TransactionEntity> transactions = transactionService.getTransactionsByProviderId(id);

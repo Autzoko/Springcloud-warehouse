@@ -1,6 +1,6 @@
 package org.longman.microservice.service;
 
-import org.longman.microservice.entity.TransactionEntity;
+import org.longman.entity.TransactionEntity;
 
 import java.util.List;
 

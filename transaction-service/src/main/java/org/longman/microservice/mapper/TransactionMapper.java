@@ -1,7 +1,7 @@
 package org.longman.microservice.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.longman.microservice.entity.TransactionEntity;
+import org.longman.entity.TransactionEntity;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

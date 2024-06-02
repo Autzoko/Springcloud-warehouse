@@ -1,4 +1,4 @@
-package org.longman.microservice.entity;
+package org.longman.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -12,18 +12,16 @@ import org.longman.utils.BaseEntity;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@TableName("warehouse_transaction")
-public class TransactionEntity extends BaseEntity {
+@TableName("warehouse_user")
+public class UserEntity extends BaseEntity {
 
     @TableId
-    private String id;
+    private Long id;
 
-    private Long provider_id;
+    private String name;
 
-    private Long consumer_id;
+    private String password;
 
-    private String commodity_id;
-
-    private Long num_transaction;
+    private boolean category;
 
 }
