@@ -82,6 +82,17 @@ public class CommodityServiceImpl implements CommodityService {
         return commodityMapper.getCommodityStock(commodityId);
     }
 
+    @Override
+    public CommodityEntity getCommodityById(String commodityId) {
+        LambdaQueryWrapper<CommodityEntity> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(CommodityEntity::getId, commodityId);
+        Long itemCount = commodityMapper.selectCount(wrapper);
+        if (itemCount == 0) {
+            throw new ObjectNotExistException("commodity not exist");
+        }
+        return commodityMapper.selectOne(wrapper);
+    }
+
     private void checkCommodity(CommodityEntity commodity) {
         // check owner exist
 

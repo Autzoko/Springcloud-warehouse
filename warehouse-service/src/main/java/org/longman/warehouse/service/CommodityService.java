@@ -21,4 +21,6 @@ public interface CommodityService {
     void updateCommodityPrice(String commodityId, Float price);
 
     Long getCommodityStock(String commodityId);
+
+    CommodityEntity getCommodityById(String commodityId);
 }
