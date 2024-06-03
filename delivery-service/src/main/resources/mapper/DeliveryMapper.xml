@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.longman.delivery.mapper.DeliveryMapper">
+    <select id="getDeliveryStatus">
+        SELECT `status` FROM `warehouse_delivery`
+        WHERE
+            `id` = #{deliveryId}
+    </select>
+
+    <select id="getDeliveryBySourceId" resultType="org.longman.entity.DeliveryEntity">
+        SELECT * FROM `warehouse_delivery`
+        <where>
+            <if test="sourceId != null">
+                `source_id` = #{sourceId}
+            </if>
+        </where>
+    </select>
+
+    <select id="getDeliveryByDestinationId" resultType="org.longman.entity.DeliveryEntity">
+        SELECT * FROM `warehouse_delivery`
+        <where>
+            <if test="destinationId != null">
+                `destination_id` = #{destinationId}
+            </if>
+        </where>
+    </select>
+
+    <update id="updateDeliveryStatus">
+        UPDATE `warehouse_delivery`
+        SET `status` = #{status}
+        WHERE
+            `id` = #{deliveryId}
+    </update>
+</mapper>
