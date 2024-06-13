@@ -13,6 +13,8 @@ public class TransactionDto {
 
     private String commodity_id;
 
+    private Long destination_id;
+
     private Long num_transaction;
 
 }

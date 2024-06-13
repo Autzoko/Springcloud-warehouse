@@ -70,8 +70,8 @@ public class CommodityController extends BaseController {
         }
     }
 
-    @PutMapping("/update-stock/{id}")
-    public ResponseEntity<Object> updateStock(@PathVariable(name = "id") String id, @RequestParam(name = "stock") Long stock) {
+    @PutMapping("/update-stock")
+    public ResponseEntity<Object> updateStock(@RequestParam(name = "id") String id, @RequestParam(name = "stock") Long stock) {
         try {
             if (Objects.isNull(stock)) {
                 throw new JsonDataError("stock is null");
@@ -127,6 +127,27 @@ public class CommodityController extends BaseController {
             System.out.println(e.getMessage());
             log.error(e.getMessage());
             return fail("fetch warehouse commodity error");
+        }
+    }
+
+    @GetMapping("/fetch-commodity")
+    public ResponseEntity<Object> getCommodityById(@RequestParam(name = "id") String id) {
+        try {
+            CommodityEntity commodity = commodityService.getCommodityById(id);
+
+            CommodityDto commodityDto = new CommodityDto();
+
+            commodityDto.setId(commodity.getId());
+            commodityDto.setOwner_id(commodity.getOwner_id());
+            commodityDto.setWarehouse_id(commodity.getWarehouse_id());
+            commodityDto.setPrice(commodity.getPrice());
+            commodityDto.setStock(commodity.getStock());
+
+            return success(commodityDto);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            log.error(e.getMessage());
+            return fail("fetch commodity error");
         }
     }
 

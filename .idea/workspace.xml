@@ -4,33 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e1c11613-66e7-435b-9ca4-8db17f5353d4" name="Changes" comment="basic transaction service">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common-utils/src/main/java/org/longman/entity/UserEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common-utils/src/main/java/org/longman/entity/dto/UserDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common-utils/src/main/java/org/longman/utils/WarehouseMetaObjectHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/delivery-service/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/delivery-service/src/main/java/org/longman/delivery/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/delivery-service/src/main/resources/application.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/delivery-service/src/main/resources/docs/delivery-service-sql.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/resources/application.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/resources/docs/user-service-sql.sql" afterDir="false" />
+    <list default="true" id="e1c11613-66e7-435b-9ca4-8db17f5353d4" name="Changes" comment="delivery service">
+      <change afterPath="$PROJECT_DIR$/delivery-service/src/main/java/org/longman/delivery/controller/DeliveryController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transaction-service/src/main/java/org/longman/microservice/config/ApplicationContextConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transaction-service/src/main/java/org/longman/microservice/utils/HandleCommodity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transaction-service/src/main/java/org/longman/microservice/utils/HandleDelivery.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/transaction-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/transaction-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/transaction-service/src/main/java/org/longman/microservice/RunTransactionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/transaction-service/src/main/java/org/longman/microservice/RunTransactionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-utils/src/main/java/org/longman/entity/TransactionEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-utils/src/main/java/org/longman/entity/TransactionEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-utils/src/main/java/org/longman/entity/dto/TransactionDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-utils/src/main/java/org/longman/entity/dto/TransactionDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery-service/src/main/java/org/longman/delivery/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/delivery-service/src/main/java/org/longman/delivery/RunDeliveryService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/transaction-service/src/main/java/org/longman/microservice/controller/TransactionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/transaction-service/src/main/java/org/longman/microservice/controller/TransactionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/transaction-service/src/main/java/org/longman/microservice/entity/TransactionEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-utils/src/main/java/org/longman/entity/TransactionEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/transaction-service/src/main/java/org/longman/microservice/entity/dto/TransactionDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-utils/src/main/java/org/longman/entity/dto/TransactionDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/transaction-service/src/main/java/org/longman/microservice/mapper/TransactionMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/transaction-service/src/main/java/org/longman/microservice/mapper/TransactionMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/transaction-service/src/main/java/org/longman/microservice/service/TransactionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/transaction-service/src/main/java/org/longman/microservice/service/TransactionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/transaction-service/src/main/java/org/longman/microservice/service/impl/TransactionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/transaction-service/src/main/java/org/longman/microservice/service/impl/TransactionServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/transaction-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/transaction-service/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/transaction-service/src/main/resources/docs/payment-service-sql.sql" beforeDir="false" afterPath="$PROJECT_DIR$/transaction-service/src/main/resources/docs/transaction-service-sql.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/transaction-service/src/main/resources/mapper/TransactionMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/transaction-service/src/main/resources/mapper/TransactionMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/transaction-service/src/main/resources/docs/transaction-service-sql.sql" beforeDir="false" afterPath="$PROJECT_DIR$/transaction-service/src/main/resources/docs/transaction-service-sql.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/warehouse-service/src/main/java/org/longman/warehouse/controller/CommodityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/warehouse-service/src/main/java/org/longman/warehouse/controller/CommodityController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +74,9 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.RunDeliveryService.executor": "Run",
     "Spring Boot.RunTransactionService.executor": "Run",
+    "Spring Boot.RunWarehouseService.executor": "Run",
     "git-widget-placeholder": "master",
     "jdk.selected.JAVA_MODULE": "17",
     "kotlin-language-version-configured": "true",
@@ -121,7 +110,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1717292199790</updated>
-      <workItem from="1717292200997" duration="17904000" />
+      <workItem from="1717292200997" duration="46649000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -139,7 +128,71 @@
       <option name="project" value="LOCAL" />
       <updated>1717314413008</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="building delivery, warehouse, and user services">
+      <option name="closed" value="true" />
+      <created>1717333936606</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1717333936606</updated>
+    </task>
+    <task id="LOCAL-00004" summary="building warehouse service">
+      <option name="closed" value="true" />
+      <created>1717335959104</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1717335959104</updated>
+    </task>
+    <task id="LOCAL-00005" summary="finish warehouse service">
+      <option name="closed" value="true" />
+      <created>1717336748813</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1717336748813</updated>
+    </task>
+    <task id="LOCAL-00006" summary="finish commodity service">
+      <option name="closed" value="true" />
+      <created>1717338805479</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1717338805479</updated>
+    </task>
+    <task id="LOCAL-00007" summary="add constants">
+      <option name="closed" value="true" />
+      <created>1717339121798</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1717339121798</updated>
+    </task>
+    <task id="LOCAL-00008" summary="add constants">
+      <option name="closed" value="true" />
+      <created>1717339226251</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1717339226251</updated>
+    </task>
+    <task id="LOCAL-00009" summary="add delivery-service-sql.sql">
+      <option name="closed" value="true" />
+      <created>1717399188894</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1717399188894</updated>
+    </task>
+    <task id="LOCAL-00010" summary="delivery service">
+      <option name="closed" value="true" />
+      <created>1717401342123</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1717401342123</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -149,6 +202,13 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="first commit" />
     <MESSAGE value="basic transaction service" />
-    <option name="LAST_COMMIT_MESSAGE" value="basic transaction service" />
+    <MESSAGE value="building delivery, warehouse, and user services" />
+    <MESSAGE value="building warehouse service" />
+    <MESSAGE value="finish warehouse service" />
+    <MESSAGE value="finish commodity service" />
+    <MESSAGE value="add constants" />
+    <MESSAGE value="add delivery-service-sql.sql" />
+    <MESSAGE value="delivery service" />
+    <option name="LAST_COMMIT_MESSAGE" value="delivery service" />
   </component>
 </project>
