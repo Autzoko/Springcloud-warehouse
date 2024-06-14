@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.NormalUserMapper">
+    <insert id="addUser">
+        insert into user(uid, email, createtime, password, code)
+        values (#{uid}, #{email}, #{createtime}, #{password}, #{code})
+    </insert>
+
+    <update id="updateLastLoginTime">
+        UPDATE user
+        SET lastlogintime = #{lastLoginTime}
+        WHERE email = #{email}
+    </update>
+
+    <update id="updateUserByEmail">
+        update user
+        <set>
+            <if test="uid!=null and uid !=''">
+                uid = #{uid},
+            </if>
+            <if test="password!=null and password !=''">
+                password = #{password},
+            </if>
+            <if test="createtime!=null">
+                createtime = #{createtime},
+            </if>
+
+        </set>
+        where email = #{email}
+    </update>
+</mapper>

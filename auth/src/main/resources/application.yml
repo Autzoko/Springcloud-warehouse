@@ -1,0 +1,51 @@
+spring:
+  data:
+    redis:
+      host: "localhost"
+      port: 6379
+      database: 0
+  datasource:
+    #数据库驱动完整类名
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #数据库连接url
+    url: jdbc:mysql://127.0.0.1:3306/springcloud_warehouse
+    #数据库用户名
+    username: root
+    #数据库密码
+    password: 123456
+  servlet:
+    multipart:
+      #配置单个文件上传大小限制
+      max-file-size: 10MB
+      #配置单个请求最大大小的限制（一次请求上传多个文件）
+      max-request-size: 100MB
+  mail:
+    host: smtp.qq.com
+    port: 587
+    username: 570225587@qq.com
+    password: kgixuuxvhqudbcgi
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+server:
+  servlet:
+    session:
+      timeout: 10m
+
+# Logger Config
+logging:
+  level:
+    com.hexadecimal: debug
+    org.mybatis: DEBUG
+
+# 配置打印sql语句
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+
