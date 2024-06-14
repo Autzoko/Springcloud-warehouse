@@ -5,20 +5,15 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: customer-service
-          uri: lb://CUSTOMER-SERVICE
+        - id: delivery-service
+          uri: lb://DELIVERY-SERVICE
           predicates:
-            - Path=/customers/**
+            - Path=/delivery/**
 
-        - id: order-service
-          uri: lb://ORDER-SERVICE
+        - id: transaction-service
+          uri: lb://TRANSACTION-SERVICE
           predicates:
-            - Path=/orders/**
-
-        - id: shipment-service
-          uri: lb://SHIPMENT-SERVICE
-          predicates:
-            - Path=/shipments/**
+            - Path=/transaction/**
 
         - id: warehouse-service
           uri: lb://WAREHOUSE-SERVICE
@@ -35,18 +30,8 @@ spring:
           predicates:
             - Path=/users/**
 
-        - id: role-service
-          uri: lb://ROLE-SERVICE
-          predicates:
-            - Path=/roles/**
-
-        - id: user-role-service
-          uri: lb://USER-ROLE-SERVICE
-          predicates:
-            - Path=/user-roles/**
-
   config:
-    uri: http://localhost:8888  # Example of connecting to a Spring Cloud Config Server
+    uri: http://localhost:8888
 
   data:
     datasource:
