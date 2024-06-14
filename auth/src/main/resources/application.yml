@@ -1,47 +1,92 @@
 spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+      routes:
+        - id: customer-service
+          uri: lb://CUSTOMER-SERVICE
+          predicates:
+            - Path=/customers/**
+
+        - id: order-service
+          uri: lb://ORDER-SERVICE
+          predicates:
+            - Path=/orders/**
+
+        - id: shipment-service
+          uri: lb://SHIPMENT-SERVICE
+          predicates:
+            - Path=/shipments/**
+
+        - id: warehouse-service
+          uri: lb://WAREHOUSE-SERVICE
+          predicates:
+            - Path=/warehouses/**
+
+        - id: payment-service
+          uri: lb://PAYMENT-SERVICE
+          predicates:
+            - Path=/payments/**
+
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/users/**
+
+        - id: role-service
+          uri: lb://ROLE-SERVICE
+          predicates:
+            - Path=/roles/**
+
+        - id: user-role-service
+          uri: lb://USER-ROLE-SERVICE
+          predicates:
+            - Path=/user-roles/**
+
+  config:
+    uri: http://localhost:8888  # Example of connecting to a Spring Cloud Config Server
+
   data:
-  datasource:
-    #数据库驱动完整类名
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    #数据库连接url
-    url: jdbc:mysql://127.0.0.1:3306/springcloud_warehouse
-    #数据库用户名
-    username: root
-    #数据库密码
-    password: 123456
-  servlet:
-    multipart:
-      #配置单个文件上传大小限制
-      max-file-size: 10MB
-      #配置单个请求最大大小的限制（一次请求上传多个文件）
-      max-request-size: 100MB
-  mail:
-    host: smtp.qq.com
-    port: 587
-    username: 570225587@qq.com
-    password: kgixuuxvhqudbcgi
-    properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true
+    datasource:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/springcloud_warehouse
+      username: root
+      password: 123456
+    servlet:
+      multipart:
+        max-file-size: 10MB
+        max-request-size: 100MB
+    mail:
+      host: smtp.qq.com
+      port: 587
+      username: 570225587@qq.com
+      password: kgixuuxvhqudbcgi
+      properties:
+        mail:
+          smtp:
+            auth: true
+            starttls:
+              enable: true
+    server:
+      servlet:
+        session:
+          timeout: 10m
+    logging:
+      level:
+        com.hexadecimal: debug
+        org.mybatis: DEBUG
+    mybatis-plus:
+      mapper-locations: classpath:mapper/*.xml
+      configuration:
+        log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# Eureka Client Configuration
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
 server:
-  servlet:
-    session:
-      timeout: 10m
-
-# Logger Config
-logging:
-  level:
-    com.hexadecimal: debug
-    org.mybatis: DEBUG
-
-# 配置打印sql语句
-mybatis-plus:
-  mapper-locations: classpath:mapper/*.xml
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-
-
-
+  port: 8080
