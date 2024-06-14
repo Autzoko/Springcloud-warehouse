@@ -18,7 +18,7 @@ public class CommodityEntity extends BaseEntity {
     @TableId
     private String id;
 
-    private Long owner_id;
+    private String name;
 
     private Long warehouse_id;
 

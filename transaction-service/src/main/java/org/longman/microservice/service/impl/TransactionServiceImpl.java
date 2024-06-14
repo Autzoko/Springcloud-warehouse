@@ -1,17 +1,21 @@
 package org.longman.microservice.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import lombok.RequiredArgsConstructor;
 import org.longman.exception.IdConflictException;
 import org.longman.exception.MissingFieldException;
 import org.longman.entity.TransactionEntity;
 import org.longman.microservice.mapper.TransactionMapper;
+import org.longman.microservice.service.TransactionClient;
 import org.longman.microservice.service.TransactionService;
 import org.longman.utils.WarehouseMetaObjectHandler;
 import org.springframework.context.annotation.Import;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -19,6 +23,8 @@ import java.util.List;
 public class TransactionServiceImpl implements TransactionService {
 
     private final TransactionMapper transactionMapper;
+
+    private final TransactionClient transactionClient;
 
     @Override
     public void createTransaction(TransactionEntity transaction) {
@@ -65,6 +71,20 @@ public class TransactionServiceImpl implements TransactionService {
         LambdaQueryWrapper<TransactionEntity> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(TransactionEntity::getCommodity_id, commodityId);
         return transactionMapper.selectList(wrapper);
+    }
+
+    @Override
+    public boolean isPaymentSuccess(Float price) {
+        ResponseEntity<Object> response = transactionClient.pay(price);
+        JSONObject body = JSONObject.parseObject(Objects.requireNonNull(response.getBody()).toString());
+        return body.getObject("success", Boolean.class);
+    }
+
+    @Override
+    public boolean isCommodityUpdated(String id, Long stock) {
+        ResponseEntity<Object> response = transactionClient.updateStock(id, stock);
+        JSONObject body = JSONObject.parseObject(Objects.requireNonNull(response.getBody()).toString());
+        return body.getObject("success", Boolean.class);
     }
 
     private void checkTransaction(TransactionEntity transaction) {

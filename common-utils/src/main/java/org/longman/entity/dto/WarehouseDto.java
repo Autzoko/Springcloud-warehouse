@@ -9,7 +9,5 @@ public class WarehouseDto {
 
     private Long id;
 
-    private Long owner_id;
-
     private Long stock;
 }

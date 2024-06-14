@@ -29,8 +29,6 @@ public class WarehouseController extends BaseController {
             validateWarehouseInfo(warehouseDto);
 
             WarehouseEntity warehouse = new WarehouseEntity();
-
-            warehouse.setOwner_id(warehouseDto.getOwner_id());
             warehouse.setStock(warehouseDto.getStock());
 
             warehouseService.createWarehouse(warehouse);
@@ -73,7 +71,6 @@ public class WarehouseController extends BaseController {
         for (WarehouseEntity warehouse : warehouses) {
             WarehouseDto warehouseDto = new WarehouseDto();
             warehouseDto.setId(warehouse.getId());
-            warehouseDto.setOwner_id(warehouse.getOwner_id());
             warehouseDto.setStock(warehouse.getStock());
             warehouseDtoList.add(warehouseDto);
         }
@@ -83,9 +80,6 @@ public class WarehouseController extends BaseController {
     private static void validateWarehouseInfo(WarehouseDto warehouseDto) {
         if (warehouseDto == null) {
             throw new JsonDataError("warehouse data not found");
-        }
-        if (Objects.isNull(warehouseDto.getOwner_id())) {
-            throw new JsonDataError("owner id not found");
         }
         if (Objects.isNull(warehouseDto.getStock()) || warehouseDto.getStock() < 0) {
             throw new JsonDataError("stock not found");

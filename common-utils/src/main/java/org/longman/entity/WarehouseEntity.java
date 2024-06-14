@@ -18,8 +18,6 @@ public class WarehouseEntity extends BaseEntity {
     @TableId
     private Long id;
 
-    private Long owner_id;
-
     private Long stock;
 
 }

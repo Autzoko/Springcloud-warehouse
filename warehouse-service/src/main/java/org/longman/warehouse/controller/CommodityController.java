@@ -35,7 +35,7 @@ public class CommodityController extends BaseController {
             CommodityEntity commodity = new CommodityEntity();
 
             commodity.setId(UUID.randomUUID().toString());
-            commodity.setOwner_id(commodityDto.getOwner_id());
+            commodity.setName(commodityDto.getName());
             commodity.setWarehouse_id(commodityDto.getWarehouse_id());
             commodity.setPrice(commodityDto.getPrice());
             commodity.setStock(commodityDto.getStock());
@@ -52,7 +52,6 @@ public class CommodityController extends BaseController {
             log.error(e.getMessage());
             return fail(e.getMessage());
         } catch (Exception e) {
-            e.printStackTrace();
             log.error(e.getMessage());
             return fail(e.getMessage());
         }
@@ -138,7 +137,7 @@ public class CommodityController extends BaseController {
             CommodityDto commodityDto = new CommodityDto();
 
             commodityDto.setId(commodity.getId());
-            commodityDto.setOwner_id(commodity.getOwner_id());
+            commodityDto.setName(commodity.getName());
             commodityDto.setWarehouse_id(commodity.getWarehouse_id());
             commodityDto.setPrice(commodity.getPrice());
             commodityDto.setStock(commodity.getStock());
@@ -156,7 +155,7 @@ public class CommodityController extends BaseController {
         for (CommodityEntity commodity : commodities) {
             CommodityDto commodityDto = new CommodityDto();
             commodityDto.setId(commodity.getId());
-            commodityDto.setOwner_id(commodity.getOwner_id());
+            commodityDto.setName(commodity.getName());
             commodityDto.setWarehouse_id(commodity.getWarehouse_id());
             commodityDto.setPrice(commodity.getPrice());
             commodityDto.setStock(commodity.getStock());
@@ -169,8 +168,8 @@ public class CommodityController extends BaseController {
         if (commodityDto == null) {
             throw new JsonDataError("commodity data not found");
         }
-        if(Objects.isNull(commodityDto.getOwner_id())) {
-            throw new JsonDataError("owner id not found");
+        if(Objects.isNull(commodityDto.getName())) {
+            throw new JsonDataError("name not found");
         }
         if(Objects.isNull(commodityDto.getPrice())) {
             throw new JsonDataError("price not found");

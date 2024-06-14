@@ -20,4 +20,8 @@ public interface TransactionService {
 
     List<TransactionEntity> getTransactionsByCommodityId(String commodityId);
 
+    boolean isPaymentSuccess(Float price);
+
+    boolean isCommodityUpdated(String id, Long stock);
+
 }

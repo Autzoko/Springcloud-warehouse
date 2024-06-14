@@ -9,9 +9,9 @@ public class CommodityDto {
 
     private String id;
 
-    private Long warehouse_id;
+    private String name;
 
-    private Long owner_id;
+    private Long warehouse_id;
 
     private Float price;
 

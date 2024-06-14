@@ -20,8 +20,6 @@ public class DeliveryEntity extends BaseEntity {
 
     private Long source_id;
 
-    private Long destination_id;
-
     private boolean status;
 
 }

@@ -9,6 +9,7 @@ import org.longman.exception.JsonDataError;
 import org.longman.exception.MissingFieldException;
 import org.longman.entity.TransactionEntity;
 import org.longman.entity.dto.TransactionDto;
+import org.longman.microservice.service.TransactionClient;
 import org.longman.microservice.service.TransactionService;
 import org.longman.microservice.utils.HandleCommodity;
 import org.longman.utils.BaseController;
@@ -29,8 +30,6 @@ public class TransactionController extends BaseController {
 
     private final HandleCommodity handleCommodity = new HandleCommodity();
 
-    private final RestTemplate restTemplate;
-
     @PostMapping("/new")
     public ResponseEntity<Object> createTransaction(@RequestBody TransactionDto transactionDto) {
         try {
@@ -42,20 +41,15 @@ public class TransactionController extends BaseController {
             transaction.setConsumer_id(transactionDto.getConsumer_id());
             transaction.setCommodity_id(transactionDto.getCommodity_id());
             transaction.setNum_transaction(transactionDto.getNum_transaction());
+            transaction.setPrice(transactionDto.getPrice());
 
-            // create delivery info
-            DeliveryDto deliveryDto = new DeliveryDto();
-            deliveryDto.setSource_id(handleCommodity.getWarehouseId(transactionDto.getCommodity_id()));
-            deliveryDto.setDestination_id(transactionDto.getDestination_id());
-            deliveryDto.setStatus(false);
+            if (!transactionService.isPaymentSuccess(transaction.getPrice()))  {
+                return fail("payment failed");
+            }
 
-            restTemplate.postForObject(ServiceUrls.DELIVERY_SERVICE_URL + "/create", deliveryDto, String.class);
-
-            // creat commodity info
-            Map<String,Object> data = new HashMap<>();
-            data.put("id", transactionDto.getCommodity_id());
-            data.put("stock", transactionDto.getNum_transaction());
-            restTemplate.put(ServiceUrls.COMMODITY_SERVICE_URL + "/update-stock", data);
+            if (!transactionService.isCommodityUpdated(transaction.getCommodity_id(), transaction.getNum_transaction()))  {
+                return fail("commodity update failed");
+            }
 
             transactionService.createTransaction(transaction);
 
