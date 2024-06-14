@@ -32,7 +32,6 @@ public class DeliveryController extends BaseController {
 
             delivery.setId(UUID.randomUUID().toString());
             delivery.setSource_id(deliveryDto.getSource_id());
-            delivery.setDestination_id(deliveryDto.getDestination_id());
             delivery.setStatus(false);
 
             deliveryService.createDelivery(delivery);
@@ -65,7 +64,6 @@ public class DeliveryController extends BaseController {
             DeliveryDto deliveryDto = new DeliveryDto();
             deliveryDto.setId(id);
             deliveryDto.setSource_id(delivery.getSource_id());
-            deliveryDto.setDestination_id(delivery.getDestination_id());
             deliveryDto.setStatus(delivery.isStatus());
             return success(deliveryDto);
         } catch (Exception e) {
@@ -78,12 +76,6 @@ public class DeliveryController extends BaseController {
     private static void validateDeliveryInfo(DeliveryDto deliveryDto) {
         if (Objects.isNull(deliveryDto.getSource_id())) {
             throw new JsonDataError("source id is empty");
-        }
-        if (Objects.isNull(deliveryDto.getDestination_id())) {
-            throw new JsonDataError("destination id is empty");
-        }
-        if (Objects.isNull(deliveryDto.isStatus())) {
-            throw new JsonDataError("status is empty");
         }
     }
 }

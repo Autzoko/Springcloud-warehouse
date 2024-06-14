@@ -103,19 +103,6 @@ public class CommodityController extends BaseController {
         }
     }
 
-    @GetMapping("/fetch-user-commodity")
-    public ResponseEntity<Object> getCommodityByOwnerId(@RequestParam(name = "ownerId") Long ownerId) {
-        try {
-            List<CommodityEntity> commodities = commodityService.getCommodityByOwnerId(ownerId);
-            List<CommodityDto> commodityDtos = getCommodityDtoList(commodities);
-            return success(commodityDtos);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            log.error(e.getMessage());
-            return fail("fetch user's commodity error");
-        }
-    }
-
     @GetMapping("/fetch-warehouse-commodity")
     public ResponseEntity<Object> getCommodityByWarehouseId(@RequestParam(name = "warehouseId") Long warehouseId) {
         try {
@@ -147,6 +134,18 @@ public class CommodityController extends BaseController {
             System.out.println(e.getMessage());
             log.error(e.getMessage());
             return fail("fetch commodity error");
+        }
+    }
+
+    @GetMapping("/get-warehouse/{id}")
+    public ResponseEntity<Object> getWarehouseById(@PathVariable(name = "id") String id) {
+        try {
+            CommodityEntity commodity = commodityService.getCommodityById(id);
+            return success(commodity.getWarehouse_id());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            log.error(e.getMessage());
+            return fail("get warehouse error");
         }
     }
 

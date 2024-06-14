@@ -1,5 +1,6 @@
 package org.longman.microservice.service;
 
+import org.longman.entity.dto.DeliveryDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
@@ -15,4 +16,10 @@ public interface TransactionClient {
 
     @PutMapping("/commodity/update-stock")
     ResponseEntity<Object> updateStock(@RequestParam(name = "id") String id, @RequestParam(name = "stock") Long stock);
+
+    @PostMapping("/delivery/create")
+    ResponseEntity<Object> createDelivery(@RequestBody DeliveryDto deliveryDto);
+
+    @GetMapping("/commodity/get-warehouse/{id}")
+    ResponseEntity<Object> getWarehouseIdByCommodityId(@PathVariable(name = "id") String id);
 }

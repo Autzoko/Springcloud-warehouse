@@ -1,6 +1,7 @@
 package org.longman.microservice.service;
 
 import org.longman.entity.TransactionEntity;
+import org.longman.entity.dto.DeliveryDto;
 
 import java.util.List;
 
@@ -23,5 +24,9 @@ public interface TransactionService {
     boolean isPaymentSuccess(Float price);
 
     boolean isCommodityUpdated(String id, Long stock);
+
+    String getWarehouseId(String commodity_id);
+
+    boolean deliver(DeliveryDto deliveryDto);
 
 }

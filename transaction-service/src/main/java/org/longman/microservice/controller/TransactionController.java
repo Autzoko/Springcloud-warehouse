@@ -29,6 +29,7 @@ public class TransactionController extends BaseController {
     private final TransactionService transactionService;
 
     private final HandleCommodity handleCommodity = new HandleCommodity();
+    private final TransactionClient transactionClient;
 
     @PostMapping("/new")
     public ResponseEntity<Object> createTransaction(@RequestBody TransactionDto transactionDto) {
@@ -49,6 +50,15 @@ public class TransactionController extends BaseController {
 
             if (!transactionService.isCommodityUpdated(transaction.getCommodity_id(), transaction.getNum_transaction()))  {
                 return fail("commodity update failed");
+            }
+
+            DeliveryDto deliveryDto = new DeliveryDto();
+            deliveryDto.setId(transaction.getId());
+            deliveryDto.setSource_id(Long.parseLong(transactionService.getWarehouseId(transaction.getCommodity_id())));
+            deliveryDto.setStatus(false);
+
+            if (!transactionService.deliver(deliveryDto)) {
+                return fail("deliver failed");
             }
 
             transactionService.createTransaction(transaction);

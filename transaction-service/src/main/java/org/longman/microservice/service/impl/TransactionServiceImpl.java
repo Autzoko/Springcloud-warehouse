@@ -3,6 +3,7 @@ package org.longman.microservice.service.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import lombok.RequiredArgsConstructor;
+import org.longman.entity.dto.DeliveryDto;
 import org.longman.exception.IdConflictException;
 import org.longman.exception.MissingFieldException;
 import org.longman.entity.TransactionEntity;
@@ -83,6 +84,20 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public boolean isCommodityUpdated(String id, Long stock) {
         ResponseEntity<Object> response = transactionClient.updateStock(id, stock);
+        JSONObject body = JSONObject.parseObject(Objects.requireNonNull(response.getBody()).toString());
+        return body.getObject("success", Boolean.class);
+    }
+
+    @Override
+    public String getWarehouseId(String commodity_id) {
+        ResponseEntity<Object> response = transactionClient.getWarehouseIdByCommodityId(commodity_id);
+        JSONObject body = JSONObject.parseObject(Objects.requireNonNull(response.getBody()).toString());
+        return body.getObject("data", String.class);
+    }
+
+    @Override
+    public boolean deliver(DeliveryDto deliveryDto) {
+        ResponseEntity<Object> response = transactionClient.createDelivery(deliveryDto);
         JSONObject body = JSONObject.parseObject(Objects.requireNonNull(response.getBody()).toString());
         return body.getObject("success", Boolean.class);
     }
