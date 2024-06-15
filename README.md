@@ -6,12 +6,25 @@
 ### 2 微服务设计
 
 #### 2.1 Gateway
-
+###### User
+```sql
+CREATE TABLE `user` (
+   `id` int NOT NULL AUTO_INCREMENT,
+   `uid` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+   `email` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+   `password` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+   `code` int DEFAULT NULL,
+   `createtime` datetime DEFAULT NULL,
+   `lastlogintime` datetime DEFAULT NULL,
+   PRIMARY KEY (`id`)
+ ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+```
 #### 2.2 CRM
 
 ##### MicroService Name:transaction_service
 
 ##### Database Table
+
 
 ###### Customer
 
@@ -151,3 +164,12 @@ SET FOREIGN_KEY_CHECKS = 1;
 ```
 
 ##### API
+
+### 3 OAuth
+使用accessToken和refreshToken来实现对用户的授权和更新对用户的授权。基本结构如下图所示，其具体实现在代码auth/controller和对应的相关文件中可以查看。
+
+![2019112915404735](https://github.com/Autzoko/Springcloud-warehouse/assets/104555481/45f47e58-6148-41b5-bc7f-e074d7d16560)
+
+### 4 Gateway
+Gateway实现了对无效accessToken（如过期、错误等）的过滤，同时要求所有请求均通过<http://localhost:8888>发起请求并携带正确请求头。当验证accessToken有效之后很根据url请求对应的微服务。具体实现可以在auth/filter和auth/config中查看。
+<img width="332" alt="搜狗截图20240615212820" src="https://github.com/Autzoko/Springcloud-warehouse/assets/104555481/21f44635-a552-40c5-a36f-001719fbb737">
