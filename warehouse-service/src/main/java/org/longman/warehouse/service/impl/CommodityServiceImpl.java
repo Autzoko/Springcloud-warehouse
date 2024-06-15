@@ -41,12 +41,6 @@ public class CommodityServiceImpl implements CommodityService {
         commodityMapper.deleteById(commodityId);
     }
 
-    @Override
-    public List<CommodityEntity> getCommodityByOwnerId(Long ownerId) {
-        LambdaQueryWrapper<CommodityEntity> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(CommodityEntity::getOwner_id, ownerId);
-        return commodityMapper.selectList(wrapper);
-    }
 
     @Override
     public List<CommodityEntity> getCommodityByWarehouseId(Long warehouseId) {
@@ -84,13 +78,15 @@ public class CommodityServiceImpl implements CommodityService {
 
     @Override
     public CommodityEntity getCommodityById(String commodityId) {
-        LambdaQueryWrapper<CommodityEntity> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(CommodityEntity::getId, commodityId);
-        Long itemCount = commodityMapper.selectCount(wrapper);
-        if (itemCount == 0) {
-            throw new ObjectNotExistException("commodity not exist");
-        }
-        return commodityMapper.selectOne(wrapper);
+//        LambdaQueryWrapper<CommodityEntity> wrapper = new LambdaQueryWrapper<>();
+//        wrapper.eq(CommodityEntity::getId, commodityId);
+//        Long itemCount = commodityMapper.selectCount(wrapper);
+//        if (itemCount == 0) {
+//            throw new ObjectNotExistException("commodity not exist");
+//        }
+//        return commodityMapper.selectOne(wrapper);
+        //return commodityMapper.selectById(commodityId);
+        return commodityMapper.findById(commodityId);
     }
 
     private void checkCommodity(CommodityEntity commodity) {

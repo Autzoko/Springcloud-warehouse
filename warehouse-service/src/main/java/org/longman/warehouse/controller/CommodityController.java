@@ -83,6 +83,7 @@ public class CommodityController extends BaseController {
             warehouseService.updateWarehouseStock(currentCommodity.getWarehouse_id(), oldWarehouseStock + variance);
 
             commodityService.updateCommodityStock(id, stock);
+
             return success("stock updated");
         } catch (Exception e) {
             System.out.println(e.getMessage());

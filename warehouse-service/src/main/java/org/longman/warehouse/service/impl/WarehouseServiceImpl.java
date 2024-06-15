@@ -33,11 +33,15 @@ public class WarehouseServiceImpl implements WarehouseService {
 
     @Override
     public void updateWarehouseStock(Long warehouseId, Long stock) {
-        if (stock < 0) {
-            throw new DataContentError("warehouse stock must be greater than 0");
-        }
+        try {
+            if (stock < 0) {
+                throw new DataContentError("warehouse stock must be greater than 0");
+            }
 
-        warehouseMapper.updateWarehouseStock(warehouseId, stock);
+            warehouseMapper.updateWarehouseStock(warehouseId, stock);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -45,12 +49,6 @@ public class WarehouseServiceImpl implements WarehouseService {
         warehouseMapper.deleteById(warehouseId);
     }
 
-    @Override
-    public List<WarehouseEntity> getWarehouseByOwnerId(Long ownerId) {
-        LambdaQueryWrapper<WarehouseEntity> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(WarehouseEntity::getOwner_id, ownerId);
-        return warehouseMapper.selectList(wrapper);
-    }
 
     @Override
     public Long getWarehouseStock(Long warehouseId) {

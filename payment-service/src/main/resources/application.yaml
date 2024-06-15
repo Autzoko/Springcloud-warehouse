@@ -1,9 +1,9 @@
 server:
-  port: 8003
+  port: 8008
 
 spring:
   application:
-    name: warehouse-warehouse-service
+    name: warehouse-payment-service
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     url: jdbc:mysql://localhost:3306/springcloud_warehouse?autoReconnect=true&useUnicode=true&characterEncoding=utf8
@@ -20,6 +20,3 @@ spring:
     nacos:
       discovery:
         server-addr:127.0.0.1:8848
-
-mybatis:
-  mapperLocations: classpath:mapper/*.xml

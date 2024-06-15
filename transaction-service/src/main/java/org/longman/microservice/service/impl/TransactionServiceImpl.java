@@ -1,21 +1,28 @@
 package org.longman.microservice.service.impl;
 
+import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.longman.entity.dto.DeliveryDto;
 import org.longman.exception.IdConflictException;
 import org.longman.exception.MissingFieldException;
 import org.longman.entity.TransactionEntity;
+import org.longman.microservice.client.CommodityClient;
+import org.longman.microservice.client.DeliveryClient;
+import org.longman.microservice.client.PaymentClient;
 import org.longman.microservice.mapper.TransactionMapper;
-import org.longman.microservice.service.TransactionClient;
 import org.longman.microservice.service.TransactionService;
 import org.longman.utils.WarehouseMetaObjectHandler;
 import org.springframework.context.annotation.Import;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 @Service
@@ -25,7 +32,9 @@ public class TransactionServiceImpl implements TransactionService {
 
     private final TransactionMapper transactionMapper;
 
-    private final TransactionClient transactionClient;
+    private final DeliveryClient deliveryClient;
+    private final CommodityClient commodityClient;
+    private final PaymentClient paymentClient;
 
     @Override
     public void createTransaction(TransactionEntity transaction) {
@@ -76,30 +85,31 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public boolean isPaymentSuccess(Float price) {
-        ResponseEntity<Object> response = transactionClient.pay(price);
-        JSONObject body = JSONObject.parseObject(Objects.requireNonNull(response.getBody()).toString());
-        return body.getObject("success", Boolean.class);
+        ResponseEntity<Object> response = paymentClient.pay(price);
+        return isResponseSucceeded(response);
     }
 
     @Override
     public boolean isCommodityUpdated(String id, Long stock) {
-        ResponseEntity<Object> response = transactionClient.updateStock(id, stock);
-        JSONObject body = JSONObject.parseObject(Objects.requireNonNull(response.getBody()).toString());
-        return body.getObject("success", Boolean.class);
+        ResponseEntity<Object> response = commodityClient.updateStock(id, stock);
+        return isResponseSucceeded(response);
     }
 
     @Override
     public String getWarehouseId(String commodity_id) {
-        ResponseEntity<Object> response = transactionClient.getWarehouseIdByCommodityId(commodity_id);
-        JSONObject body = JSONObject.parseObject(Objects.requireNonNull(response.getBody()).toString());
-        return body.getObject("data", String.class);
+        ResponseEntity<Object> response = commodityClient.getWarehouseIdByCommodityId(commodity_id);
+        if (response.getBody() instanceof Map<?,?>) {
+            Map<String, Object> responseBody = (Map<String, Object>) response.getBody();
+            System.out.println(responseBody);
+            return responseBody.get("data").toString();
+        }
+        return "null";
     }
 
     @Override
     public boolean deliver(DeliveryDto deliveryDto) {
-        ResponseEntity<Object> response = transactionClient.createDelivery(deliveryDto);
-        JSONObject body = JSONObject.parseObject(Objects.requireNonNull(response.getBody()).toString());
-        return body.getObject("success", Boolean.class);
+        ResponseEntity<Object> response = deliveryClient.createDelivery(deliveryDto);
+        return isResponseSucceeded(response);
     }
 
     private void checkTransaction(TransactionEntity transaction) {
@@ -121,5 +131,14 @@ public class TransactionServiceImpl implements TransactionService {
         if (transaction.getCommodity_id() == null || transaction.getCommodity_id().isEmpty()) {
             throw new MissingFieldException("commodity_id");
         }
+    }
+
+    private boolean isResponseSucceeded(ResponseEntity<Object> response) {
+        if (response.getBody() instanceof Map<?,?>) {
+            Map<String, Object> responseBody = (Map<String, Object>) response.getBody();
+            System.out.println((Boolean) responseBody.get("success"));
+            return (Boolean) responseBody.get("success");
+        }
+        return false;
     }
 }

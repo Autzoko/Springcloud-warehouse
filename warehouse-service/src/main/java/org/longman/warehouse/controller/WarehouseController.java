@@ -52,20 +52,6 @@ public class WarehouseController extends BaseController {
         }
     }
 
-    @GetMapping("/fetch-warehouse")
-    public ResponseEntity<Object> fetchWarehouseByOwnerId(@RequestParam(name = "owner_id") Long owner_id) {
-        // check owner exist first
-        try {
-            List<WarehouseEntity> warehouses = warehouseService.getWarehouseByOwnerId(owner_id);
-            List<WarehouseDto> warehouseDtos = getWarehouseDtoList(warehouses);
-            return success(warehouseDtos);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            log.error(e.getMessage());
-            return fail("warehouse fetch error");
-        }
-    }
-
     private static List<WarehouseDto> getWarehouseDtoList(List<WarehouseEntity> warehouses) {
         List<WarehouseDto> warehouseDtoList = new ArrayList<>();
         for (WarehouseEntity warehouse : warehouses) {

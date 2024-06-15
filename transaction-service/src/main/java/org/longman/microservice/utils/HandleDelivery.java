@@ -17,8 +17,4 @@ public class HandleDelivery {
     public Long getSource(String deliveryId) {
         return getDelivery(deliveryId).getSource_id();
     }
-
-    public Long getDestination(String deliveryId) {
-        return getDelivery(deliveryId).getDestination_id();
-    }
 }

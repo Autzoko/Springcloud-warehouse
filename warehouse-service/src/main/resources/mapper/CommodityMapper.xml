@@ -2,15 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.longman.warehouse.mapper.CommodityMapper">
-
-    <select id="findByOwnerId" resultType="org.longman.entity.CommodityEntity">
-        SELECT * FROM `warehouse_commodity`
-        <where>
-            <if test="ownerId != null">
-                `owner_id` = #{ownerId}
-            </if>
-        </where>
-    </select>
+    
+    <resultMap id="CommodityMap" type="org.longman.entity.CommodityEntity">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="warehouse_id" column="warehouse_id"/>
+        <result property="price" column="price"/>
+        <result property="stock" column="stock"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
 
     <select id="findByWarehouseId" resultType="org.longman.entity.CommodityEntity">
         SELECT * FROM `warehouse_commodity`
@@ -47,5 +48,10 @@
         WHERE
             `id` = #{commodityId}
     </update>
+
+    <select id="findById" resultMap="CommodityMap">
+        SELECT * FROM warehouse_commodity
+        WHERE id = #{id}
+    </select>
 
 </mapper>

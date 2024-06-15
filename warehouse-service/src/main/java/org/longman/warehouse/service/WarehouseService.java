@@ -14,7 +14,5 @@ public interface WarehouseService {
 
     void deleteWarehouse(Long warehouseId);
 
-    List<WarehouseEntity> getWarehouseByOwnerId(Long ownerId);
-
     Long getWarehouseStock(Long warehouseId);
 }

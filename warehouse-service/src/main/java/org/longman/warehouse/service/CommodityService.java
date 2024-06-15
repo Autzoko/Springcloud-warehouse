@@ -12,8 +12,6 @@ public interface CommodityService {
 
     void deleteCommodity(String commodityId);
 
-    List<CommodityEntity> getCommodityByOwnerId(Long ownerId);
-
     List<CommodityEntity> getCommodityByWarehouseId(Long warehouseId);
 
     void updateCommodityStock(String commodityId, Long stock);

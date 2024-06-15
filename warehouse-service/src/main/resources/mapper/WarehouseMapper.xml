@@ -2,14 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.longman.warehouse.mapper.WarehouseMapper">
-    <select id="findByOwnerId" resultType="org.longman.entity.WarehouseEntity">
-        SELECT * FROM `warehouse_warehouse`
-        <where>
-            <if test="ownerId != null">
-                `owner_id` = #{ownerId}
-            </if>
-        </where>
-    </select>
 
     <select id="getWarehouseStock" resultType="java.lang.Long">
         SELECT `stock` FROM `warehouse_warehouse`
@@ -20,7 +12,7 @@
         </where>
     </select>
 
-    <update id="updateWarehouseStock">
+    <update id="updateWarehouseStock" parameterType="java.lang.Long">
         UPDATE `warehouse_warehouse`
         SET
             `stock` = #{stock}

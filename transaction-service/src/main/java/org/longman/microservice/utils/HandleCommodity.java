@@ -15,8 +15,4 @@ public class HandleCommodity {
     public Long getWarehouseId(String commodityId) {
         return getCommodity(commodityId).getWarehouse_id();
     }
-
-    public Long getOwnerId(String commodityId) {
-        return getCommodity(commodityId).getOwner_id();
-    }
 }

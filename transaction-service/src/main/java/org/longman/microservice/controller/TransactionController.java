@@ -2,21 +2,17 @@ package org.longman.microservice.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.longman.common.ServiceUrls;
 import org.longman.entity.dto.DeliveryDto;
 import org.longman.exception.IdConflictException;
 import org.longman.exception.JsonDataError;
 import org.longman.exception.MissingFieldException;
 import org.longman.entity.TransactionEntity;
 import org.longman.entity.dto.TransactionDto;
-import org.longman.microservice.service.TransactionClient;
 import org.longman.microservice.service.TransactionService;
 import org.longman.microservice.utils.HandleCommodity;
 import org.longman.utils.BaseController;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
 
@@ -29,7 +25,6 @@ public class TransactionController extends BaseController {
     private final TransactionService transactionService;
 
     private final HandleCommodity handleCommodity = new HandleCommodity();
-    private final TransactionClient transactionClient;
 
     @PostMapping("/new")
     public ResponseEntity<Object> createTransaction(@RequestBody TransactionDto transactionDto) {
@@ -48,20 +43,27 @@ public class TransactionController extends BaseController {
                 return fail("payment failed");
             }
 
+
             if (!transactionService.isCommodityUpdated(transaction.getCommodity_id(), transaction.getNum_transaction()))  {
                 return fail("commodity update failed");
             }
 
             DeliveryDto deliveryDto = new DeliveryDto();
             deliveryDto.setId(transaction.getId());
+            System.out.println("1");
+            System.out.println(transactionService.getWarehouseId(transaction.getCommodity_id()));
             deliveryDto.setSource_id(Long.parseLong(transactionService.getWarehouseId(transaction.getCommodity_id())));
+            System.out.println("2");
             deliveryDto.setStatus(false);
 
             if (!transactionService.deliver(deliveryDto)) {
                 return fail("deliver failed");
             }
+            System.out.println("3");
 
             transactionService.createTransaction(transaction);
+
+            System.out.println("4");
 
             return success("transaction created");
         } catch (JsonDataError e) {
@@ -78,6 +80,7 @@ public class TransactionController extends BaseController {
             return fail("missing field error");
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            System.out.println("normal exception");
             log.error(e.getMessage());
             return fail(e.getMessage());
         }

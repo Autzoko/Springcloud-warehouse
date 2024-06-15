@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: warehouse-user-service
+    name: warehouse-delivery-service
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     url: jdbc:mysql://localhost:3306/springcloud_warehouse?autoReconnect=true&useUnicode=true&characterEncoding=utf8
@@ -16,6 +16,10 @@ spring:
       minIdle: 5
       maxActive: 20
       maxWait: 600000
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
 
 mybatis:
   mapperLocations: classpath:mapper/*.xml

@@ -35,9 +35,6 @@ public class DeliveryServiceImpl implements DeliveryService {
         if (Objects.isNull(delivery.getSource_id())) {
             throw new MissingFieldException("source_id");
         }
-        if (Objects.isNull(delivery.getDestination_id())) {
-            throw new MissingFieldException("destination_id");
-        }
 
         deliveryMapper.updateById(delivery);
     }
@@ -64,13 +61,6 @@ public class DeliveryServiceImpl implements DeliveryService {
     }
 
     @Override
-    public List<DeliveryEntity> getDeliveryByDestinationId(Long destinationId) {
-        LambdaQueryWrapper<DeliveryEntity> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(DeliveryEntity::getDestination_id, destinationId);
-        return deliveryMapper.selectList(wrapper);
-    }
-
-    @Override
     public void updateDeliveryStatus(String deliveryId, boolean status) {
         deliveryMapper.updateDeliveryStatus(deliveryId, status);
     }
@@ -87,10 +77,6 @@ public class DeliveryServiceImpl implements DeliveryService {
 
         if (Objects.isNull(delivery.getSource_id())) {
             throw new MissingFieldException("source_id");
-        }
-
-        if (Objects.isNull(delivery.getDestination_id())) {
-            throw new MissingFieldException("destination_id");
         }
     }
 }

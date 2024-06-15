@@ -16,7 +16,5 @@ public interface DeliveryService {
 
     List<DeliveryEntity> getDeliveryBySourceId(Long sourceId);
 
-    List<DeliveryEntity> getDeliveryByDestinationId(Long destinationId);
-
     void updateDeliveryStatus(String deliveryId, boolean status);
 }
