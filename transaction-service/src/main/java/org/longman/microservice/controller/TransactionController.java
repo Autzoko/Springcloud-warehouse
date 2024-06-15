@@ -8,9 +8,11 @@ import org.longman.exception.JsonDataError;
 import org.longman.exception.MissingFieldException;
 import org.longman.entity.TransactionEntity;
 import org.longman.entity.dto.TransactionDto;
+import org.longman.microservice.mapper.CustomerMapper;
 import org.longman.microservice.service.TransactionService;
 import org.longman.microservice.utils.HandleCommodity;
 import org.longman.utils.BaseController;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +27,9 @@ public class TransactionController extends BaseController {
     private final TransactionService transactionService;
 
     private final HandleCommodity handleCommodity = new HandleCommodity();
+
+    @Autowired
+    private CustomerMapper customerMapper;
 
     @PostMapping("/new")
     public ResponseEntity<Object> createTransaction(@RequestBody TransactionDto transactionDto) {
@@ -55,6 +60,7 @@ public class TransactionController extends BaseController {
             deliveryDto.setSource_id(Long.parseLong(transactionService.getWarehouseId(transaction.getCommodity_id())));
             System.out.println("2");
             deliveryDto.setStatus(false);
+            deliveryDto.setDestination(customerMapper.selectById(transactionDto.getConsumer_id()).getAddress());
 
             if (!transactionService.deliver(deliveryDto)) {
                 return fail("deliver failed");

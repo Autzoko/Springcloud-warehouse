@@ -13,4 +13,6 @@ public class DeliveryDto {
 
     private boolean status;
 
+    private String destination;
+
 }

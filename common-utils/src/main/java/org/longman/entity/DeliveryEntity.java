@@ -22,4 +22,8 @@ public class DeliveryEntity extends BaseEntity {
 
     private boolean status;
 
+    private String destination;
+
+
+
 }

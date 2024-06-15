@@ -13,15 +13,13 @@ import org.longman.utils.BaseEntity;
 @NoArgsConstructor
 @AllArgsConstructor
 @TableName("warehouse_user")
-public class UserEntity extends BaseEntity {
+public class CustomerEntity extends BaseEntity {
 
     @TableId
     private Long id;
 
     private String name;
 
-    private String password;
-
-    private boolean category;
+    private String address;
 
 }
