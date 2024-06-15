@@ -203,9 +203,16 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 ### 3 OAuth
 使用accessToken和refreshToken来实现对用户的授权和更新对用户的授权。基本结构如下图所示，其具体实现在代码auth/controller和对应的相关文件中可以查看。
+| Name                      | Function                                 | url                          |
+| ------------------------- | ---------------------------------------- | ---------------------------- |
+| login                     | 登录                                     | /user/lgoin                 |
+| refreshToken              | 刷新token                                 | /user/refreshToken          |
+| sendEmail                 | 发送注册邮件                              | /user/refreshToken           |
+| register                  | 注册                                     | /user/register        |
 
 ![2019112915404735](https://github.com/Autzoko/Springcloud-warehouse/assets/104555481/45f47e58-6148-41b5-bc7f-e074d7d16560)
 
 ### 4 Gateway
 Gateway实现了对无效accessToken（如过期、错误等）的过滤，同时要求所有请求均通过<http://localhost:8888>发起请求并携带正确请求头。当验证accessToken有效之后很根据url请求对应的微服务。具体实现可以在auth/filter和auth/config中查看。
+
 <img width="332" alt="搜狗截图20240615212820" src="https://github.com/Autzoko/Springcloud-warehouse/assets/104555481/21f44635-a552-40c5-a36f-001719fbb737">
