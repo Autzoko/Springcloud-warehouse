@@ -4,6 +4,9 @@
 
 
 ### 2 微服务设计
+使用nacos进行微服务的管理注册发现
+![WechatIMG41165](https://github.com/Autzoko/Springcloud-warehouse/assets/88358084/f04248f3-5027-43ec-a48c-ab558c23fab4)
+
 
 #### 2.1 Gateway
 ###### User
