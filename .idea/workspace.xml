@@ -7,12 +7,15 @@
     <list default="true" id="e1c11613-66e7-435b-9ca4-8db17f5353d4" name="Changes" comment="add delivery and warehouse info update methods that can be called from transaction service via OpenFeign">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/delivery-service/src/main/java/org/longman/delivery/controller/DeliveryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/delivery-service/src/main/java/org/longman/delivery/controller/DeliveryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/delivery-service/src/main/resources/docs/delivery-service-sql.sql" beforeDir="false" afterPath="$PROJECT_DIR$/delivery-service/src/main/resources/docs/delivery-service-sql.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/transaction-service/src/main/java/org/longman/microservice/controller/TransactionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/transaction-service/src/main/java/org/longman/microservice/controller/TransactionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/transaction-service/src/main/resources/docs/transaction-service-sql.sql" beforeDir="false" afterPath="$PROJECT_DIR$/transaction-service/src/main/resources/docs/transaction-service-sql.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/resources/docs/user-service-sql.sql" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/resources/docs/user-service-sql.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/warehouse-service/src/main/java/org/longman/warehouse/controller/CommodityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/warehouse-service/src/main/java/org/longman/warehouse/controller/CommodityController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/delivery-service/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payment-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/transaction-service/src/main/java/org/longman/microservice/client/CommodityClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/transaction-service/src/main/java/org/longman/microservice/client/CommodityClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/transaction-service/src/main/java/org/longman/microservice/client/DeliveryClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/transaction-service/src/main/java/org/longman/microservice/client/DeliveryClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/transaction-service/src/main/java/org/longman/microservice/client/PaymentClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/transaction-service/src/main/java/org/longman/microservice/client/PaymentClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/transaction-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/transaction-service/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/resources/docs/user-service-sql.sql" beforeDir="false" afterPath="$PROJECT_DIR$/delivery-service/src/main/resources/docs/customer-sql.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/warehouse-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/warehouse-service/src/main/resources/application.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,6 +76,7 @@
     &quot;Spring Boot.RunPaymentService.executor&quot;: &quot;Run&quot;,
     &quot;Spring Boot.RunTransactionService.executor&quot;: &quot;Run&quot;,
     &quot;Spring Boot.RunWarehouseService.executor&quot;: &quot;Run&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
@@ -85,6 +89,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;f4c779cfde0a755cc977e6bc5ac3edbb&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -93,6 +98,20 @@
     ]
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/delivery-service/src/main/resources/docs" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Demo1Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="demo1" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.demo.Demo1Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -112,6 +131,7 @@
       <workItem from="1717292200997" duration="46649000" />
       <workItem from="1718260628377" duration="44000" />
       <workItem from="1718330010565" duration="22176000" />
+      <workItem from="1718440243129" duration="3267000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />

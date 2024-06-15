@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @Component
-@FeignClient(name = "warehouse-delivery-service")
+@FeignClient(name = "delivery-service")
 public interface DeliveryClient {
     @PostMapping("/delivery/create")
     ResponseEntity<Object> createDelivery(@RequestBody DeliveryDto deliveryDto);

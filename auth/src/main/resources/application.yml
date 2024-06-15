@@ -25,10 +25,10 @@ spring:
           predicates:
             - Path=/payments/**
 
-        - id: user-service
-          uri: lb://USER-SERVICE
-          predicates:
-            - Path=/users/**
+#        - id: user-service
+#          uri: lb://USER-SERVICE
+#          predicates:
+#            - Path=/users/**
 
   config:
     uri: http://localhost:8888

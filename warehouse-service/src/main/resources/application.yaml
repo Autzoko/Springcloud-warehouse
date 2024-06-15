@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: warehouse-warehouse-service
+    name: warehouse-service
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     url: jdbc:mysql://localhost:3306/springcloud_warehouse?autoReconnect=true&useUnicode=true&characterEncoding=utf8
