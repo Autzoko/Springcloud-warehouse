@@ -69,7 +69,19 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 ##### API
 
+| Name                         | function                               | Url                            |
+| ---------------------------- | -------------------------------------- | ------------------------------ |
+| createTransaction            | 创建订单并依次调用支付，运输和存储服务 | /transaction/new               |
+| fetchTransactionByConsumerId | 根据客户的id查询所有的订单             | /transaction/fetch-transaction |
+| createCustomer               | 创建一个新客户                         | /customers                     |
+| deleteCustomer               | 根据id删除一个客户                     | /customers/{id}                |
+| selectCustomer               | 根据id查询一个客户                     | /customers/{id}                |
+| selectAllCustomer            | 查询所有的客户                         | /customers                     |
+| updateCustomer               | 更新客户信息                           | /customers/{id}                |
 
+#### 
+
+#### 
 
 #### 2.3 Delivery
 
@@ -95,6 +107,11 @@ SET FOREIGN_KEY_CHECKS = 1;
 ```
 
 ##### API
+
+| Name            | function               | Url                      |
+| --------------- | ---------------------- | ------------------------ |
+| createDelivery  | 创建一个运输单         | /delivery/create         |
+| getDeliveryById | 根据运输单id查找运输单 | /delivery/fetch-delivery |
 
 #### 2.4 Payment
 
@@ -125,6 +142,10 @@ SET FOREIGN_KEY_CHECKS = 1;
 ```
 
 ##### API
+
+| Name | function | Url          |
+| ---- | -------- | ------------ |
+| Pay  | 支付订单 | /payment/new |
 
 #### 2.5 Warehouse
 
@@ -167,6 +188,18 @@ SET FOREIGN_KEY_CHECKS = 1;
 ```
 
 ##### API
+
+| Name                      | Function                                 | url                          |
+| ------------------------- | ---------------------------------------- | ---------------------------- |
+| addCommodity              | 增加一个商品种类                         | /commodity/add               |
+| deleteCommodity           | 删除一个商品种类                         | /commodity/delete            |
+| updateStock               | 更改商品库存                             | /commodity/update-stock      |
+| updatePrice               | 更改商品价格                             | /commodity/update-price/{id} |
+| getCommodityByWarehouseId | 通过仓库id获取存储在同一个仓库的商品列表 | /fetch-warehouse-commodity   |
+| getCommodityById          | 通过商品id获取商品                       | /fetch-commodity             |
+| createWarehouse           | 创建一个仓库                             | /warehouse/new               |
+| deleteWarehouse           | 删除一个仓库                             | /warehouse/delete            |
+
 
 ### 3 OAuth
 使用accessToken和refreshToken来实现对用户的授权和更新对用户的授权。基本结构如下图所示，其具体实现在代码auth/controller和对应的相关文件中可以查看。
