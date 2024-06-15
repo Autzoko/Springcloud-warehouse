@@ -23,7 +23,7 @@ public class CustomerController {
     }
 
     @GetMapping
-    public List<CustomerEntity> readAllCustomers() {
+    public List<CustomerEntity> selectAllCustomers() {
         return customerMapper.selectList(null);
     }
 

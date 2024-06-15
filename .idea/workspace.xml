@@ -4,18 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e1c11613-66e7-435b-9ca4-8db17f5353d4" name="Changes" comment="add delivery and warehouse info update methods that can be called from transaction service via OpenFeign">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="e1c11613-66e7-435b-9ca4-8db17f5353d4" name="Changes" comment="统一微服务命名">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/main/java/com/example/demo/Demo1Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/java/com/example/demo/Demo1Application.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/auth/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/delivery-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/delivery-service/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/payment-service/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/transaction-service/src/main/java/org/longman/microservice/client/CommodityClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/transaction-service/src/main/java/org/longman/microservice/client/CommodityClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/transaction-service/src/main/java/org/longman/microservice/client/DeliveryClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/transaction-service/src/main/java/org/longman/microservice/client/DeliveryClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/transaction-service/src/main/java/org/longman/microservice/client/PaymentClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/transaction-service/src/main/java/org/longman/microservice/client/PaymentClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/transaction-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/transaction-service/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/resources/docs/user-service-sql.sql" beforeDir="false" afterPath="$PROJECT_DIR$/delivery-service/src/main/resources/docs/customer-sql.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/warehouse-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/warehouse-service/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/transaction-service/src/main/java/org/longman/microservice/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/transaction-service/src/main/java/org/longman/microservice/controller/CustomerController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +45,9 @@
   <component name="MacroExpansionManager">
     <option name="directoryName" value="kqx86x52" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -63,41 +59,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Spring Boot.RunDeliveryService.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.RunPaymentService.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.RunTransactionService.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.RunWarehouseService.executor&quot;: &quot;Run&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon&quot;: &quot;&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;f4c779cfde0a755cc977e6bc5ac3edbb&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.RunDeliveryService.executor": "Run",
+    "Spring Boot.RunPaymentService.executor": "Run",
+    "Spring Boot.RunTransactionService.executor": "Run",
+    "Spring Boot.RunWarehouseService.executor": "Run",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "jdk.selected.JAVA_MODULE": "17",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon": "",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "spring.configuration.checksum": "4b1e34b4778c0b36a23babb1c4c7e185",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/delivery-service/src/main/resources/docs" />
@@ -132,6 +128,7 @@
       <workItem from="1718260628377" duration="44000" />
       <workItem from="1718330010565" duration="22176000" />
       <workItem from="1718440243129" duration="3267000" />
+      <workItem from="1718460218011" duration="1487000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -237,7 +234,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718351240417</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="统一微服务命名">
+      <option name="closed" value="true" />
+      <created>1718456446483</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1718456446483</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -257,6 +262,7 @@
     <MESSAGE value="in" />
     <MESSAGE value="modified commodity, transaction entities, add OpenFeign" />
     <MESSAGE value="add delivery and warehouse info update methods that can be called from transaction service via OpenFeign" />
-    <option name="LAST_COMMIT_MESSAGE" value="add delivery and warehouse info update methods that can be called from transaction service via OpenFeign" />
+    <MESSAGE value="统一微服务命名" />
+    <option name="LAST_COMMIT_MESSAGE" value="统一微服务命名" />
   </component>
 </project>

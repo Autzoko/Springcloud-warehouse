@@ -3,6 +3,9 @@ spring:
     name: api-gateway
 
   cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848  # Nacos
     gateway:
       routes:
         - id: delivery-service
@@ -68,10 +71,14 @@ spring:
         log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 # Eureka Client Configuration
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka/
+cloud:
+  nacos:
+    discovery:
+      server-addr: 127.0.0.1:8848  # Nacos
 
 server:
   port: 8080
