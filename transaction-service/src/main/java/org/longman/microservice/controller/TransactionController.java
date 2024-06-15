@@ -55,21 +55,16 @@ public class TransactionController extends BaseController {
 
             DeliveryDto deliveryDto = new DeliveryDto();
             deliveryDto.setId(transaction.getId());
-            System.out.println("1");
             System.out.println(transactionService.getWarehouseId(transaction.getCommodity_id()));
             deliveryDto.setSource_id(Long.parseLong(transactionService.getWarehouseId(transaction.getCommodity_id())));
-            System.out.println("2");
             deliveryDto.setStatus(false);
             deliveryDto.setDestination(customerMapper.selectById(transactionDto.getConsumer_id()).getAddress());
 
             if (!transactionService.deliver(deliveryDto)) {
                 return fail("deliver failed");
             }
-            System.out.println("3");
 
             transactionService.createTransaction(transaction);
-
-            System.out.println("4");
 
             return success("transaction created");
         } catch (JsonDataError e) {

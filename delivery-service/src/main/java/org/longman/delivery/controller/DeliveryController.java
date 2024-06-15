@@ -33,8 +33,13 @@ public class DeliveryController extends BaseController {
             delivery.setId(UUID.randomUUID().toString());
             delivery.setSource_id(deliveryDto.getSource_id());
             delivery.setStatus(false);
+            delivery.setDestination(deliveryDto.getDestination());
+
+            System.out.println(delivery.getDestination());
 
             deliveryService.createDelivery(delivery);
+
+            System.out.println("Delivery created: " + delivery.getDestination());
 
             return success("delivery has been created");
         } catch (MissingFieldException e) {

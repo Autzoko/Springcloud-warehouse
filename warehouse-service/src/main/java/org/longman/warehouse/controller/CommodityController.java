@@ -84,6 +84,8 @@ public class CommodityController extends BaseController {
 
             commodityService.updateCommodityStock(id, stock);
 
+            System.out.println("commodity stock updated");
+
             return success("stock updated");
         } catch (Exception e) {
             System.out.println(e.getMessage());
