@@ -29,7 +29,7 @@ public class NormalUser {
     @TableField("password")
     private String password;//普通用户的密码
 
-    @TableField("code")
+    @TableField(exist = false)
     private String code;
 
 
