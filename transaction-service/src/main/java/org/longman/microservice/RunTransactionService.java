@@ -11,6 +11,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @MapperScan("org.longman.microservice.mapper")
 @EnableFeignClients
 @EnableDiscoveryClient
+@EnableHystrix
 public class RunTransactionService {
     @LoadBalanced
     public static void main(String[] args) {

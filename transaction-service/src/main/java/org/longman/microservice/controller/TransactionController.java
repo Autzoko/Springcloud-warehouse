@@ -31,6 +31,13 @@ public class TransactionController extends BaseController {
     @Autowired
     private CustomerMapper customerMapper;
 
+    @HystrixCommand(groupKey = "AnnotationHystrixInvoke", commandKey = "getInfo", fallbackMethod = "getFallback",
+            commandProperties = {
+                    @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1000"),
+                    @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"),
+                    @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "50")
+            }
+    )
     @PostMapping("/new")
     public ResponseEntity<Object> createTransaction(@RequestBody TransactionDto transactionDto) {
         try {
