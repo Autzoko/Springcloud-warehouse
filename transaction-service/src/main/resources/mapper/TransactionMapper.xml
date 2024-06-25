@@ -28,4 +28,11 @@
             </if>
         </where>
     </select>
+
+    <update id="updateTransactionStatus">
+        UPDATE `warehouse_transaction`
+        SET `status` = #{status}
+        WHERE
+            `id` = #{transactionId}
+    </update>
 </mapper>

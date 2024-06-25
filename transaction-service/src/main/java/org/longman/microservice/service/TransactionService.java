@@ -2,6 +2,7 @@ package org.longman.microservice.service;
 
 import org.longman.entity.TransactionEntity;
 import org.longman.entity.dto.DeliveryDto;
+import org.springframework.transaction.TransactionStatus;
 
 import java.util.List;
 
@@ -28,5 +29,9 @@ public interface TransactionService {
     String getWarehouseId(String commodity_id);
 
     boolean deliver(DeliveryDto deliveryDto);
+
+    boolean isTransactionExist(String transactionId);
+
+    void updateTransactionStatus(String transactionId, String transactionStatus);
 
 }

@@ -41,7 +41,7 @@
     </update>
 
     <update id="updateCommodityPrice">
-        UPDATe `warehouse_commodity`
+        UPDATE `warehouse_commodity`
         <if test="price != null">
             SET `price` = #{price}
         </if>

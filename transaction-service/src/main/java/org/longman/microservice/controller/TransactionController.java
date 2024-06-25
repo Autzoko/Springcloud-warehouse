@@ -87,6 +87,15 @@ public class TransactionController extends BaseController {
         }
     }
 
+    @GetMapping("/cancel/{id}")
+    ResponseEntity<Object> cancelTransaction(@PathVariable String id) {
+        if (!transactionService.isTransactionExist(id)) {
+            return fail("transaction not exist");
+        }
+
+    }
+
+
     @GetMapping("/fetch-transaction")
     public ResponseEntity<Object> fetchTransactionByConsumerId(@RequestParam(name = "id") Long id) {
         // here need to check this user whether is existed, function not implemented, currently skipped

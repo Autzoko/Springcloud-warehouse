@@ -7,9 +7,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.longman.entity.dto.DeliveryDto;
+import org.longman.exception.DataContentError;
 import org.longman.exception.IdConflictException;
 import org.longman.exception.MissingFieldException;
 import org.longman.entity.TransactionEntity;
+import org.longman.exception.ObjectNotExistException;
 import org.longman.microservice.client.CommodityClient;
 import org.longman.microservice.client.DeliveryClient;
 import org.longman.microservice.client.PaymentClient;
@@ -20,6 +22,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionStatus;
 
 import java.util.List;
 import java.util.Map;
@@ -110,6 +113,25 @@ public class TransactionServiceImpl implements TransactionService {
     public boolean deliver(DeliveryDto deliveryDto) {
         ResponseEntity<Object> response = deliveryClient.createDelivery(deliveryDto);
         return isResponseSucceeded(response);
+    }
+
+    @Override
+    public boolean isTransactionExist(String transactionId) {
+        LambdaQueryWrapper<TransactionEntity> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(TransactionEntity::getId, transactionId);
+        return transactionMapper.selectCount(queryWrapper) > 0;
+    }
+
+    @Override
+    public void updateTransactionStatus(String transactionId, String transactionStatus) {
+        if (!isTransactionExist(transactionId)) {
+            throw new ObjectNotExistException("transaction not exist");
+        }
+        if (!Objects.equals(transactionStatus, "pending") || !Objects.equals(transactionStatus, "ongoing")
+        || !Objects.equals(transactionStatus, "complete") || !Objects.equals(transactionStatus, "cancelled")) {
+            throw new DataContentError("status content error: should be \"pending\", \"ongoing\", \"complete\" or \"cancelled\"");
+        }
+        updateTransactionStatus(transactionId, transactionStatus);
     }
 
     private void checkTransaction(TransactionEntity transaction) {
