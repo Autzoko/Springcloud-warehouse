@@ -57,7 +57,7 @@ public class TransactionController extends BaseController {
 
 
             if (!transactionService.isCommodityUpdated(transaction.getCommodity_id(), transaction.getNum_transaction()))  {
-                return fail("commodity update failed");
+                return fail("commodity update error");
             }
 
             DeliveryDto deliveryDto = new DeliveryDto();
