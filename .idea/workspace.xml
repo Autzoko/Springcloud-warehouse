@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e1c11613-66e7-435b-9ca4-8db17f5353d4" name="Changes" comment="add delivery and warehouse info update methods that can be called from transaction service via OpenFeign">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/delivery-service/src/main/java/org/longman/delivery/controller/DeliveryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/delivery-service/src/main/java/org/longman/delivery/controller/DeliveryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/delivery-service/src/main/resources/docs/delivery-service-sql.sql" beforeDir="false" afterPath="$PROJECT_DIR$/delivery-service/src/main/resources/docs/delivery-service-sql.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/transaction-service/src/main/java/org/longman/microservice/controller/TransactionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/transaction-service/src/main/java/org/longman/microservice/controller/TransactionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/transaction-service/src/main/resources/docs/transaction-service-sql.sql" beforeDir="false" afterPath="$PROJECT_DIR$/transaction-service/src/main/resources/docs/transaction-service-sql.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/resources/docs/user-service-sql.sql" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/resources/docs/user-service-sql.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/warehouse-service/src/main/java/org/longman/warehouse/controller/CommodityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/warehouse-service/src/main/java/org/longman/warehouse/controller/CommodityController.java" afterDir="false" />
-    </list>
+    <list default="true" id="e1c11613-66e7-435b-9ca4-8db17f5353d4" name="Changes" comment="add delivery and warehouse info update methods that can be called from transaction service via OpenFeign" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
