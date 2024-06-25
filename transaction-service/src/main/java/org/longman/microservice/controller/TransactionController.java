@@ -92,7 +92,8 @@ public class TransactionController extends BaseController {
         if (!transactionService.isTransactionExist(id)) {
             return fail("transaction not exist");
         }
-
+        transactionService.deleteTransaction(id);
+        return success("transaction cancelled");
     }
 
 
