@@ -3,6 +3,9 @@ spring:
     name: api-gateway
 
   cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848  # Nacos
     gateway:
       routes:
         - id: delivery-service
@@ -25,15 +28,31 @@ spring:
           predicates:
             - Path=/payments/**
 
-        - id: user-service
-          uri: lb://USER-SERVICE
-          predicates:
-            - Path=/users/**
+#        - id: user-service
+#          uri: lb://USER-SERVICE
+#          predicates:
+#            - Path=/users/**
 
   config:
     uri: http://localhost:8888
 
+  mail:
+    host: smtp.qq.com
+    port: 587
+    username: 570225587@qq.com
+    password: kgixuuxvhqudbcgi
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
   data:
+    redis:
+      host: "localhost"
+      port: 6379
+      database: 0
     datasource:
       driver-class-name: com.mysql.cj.jdbc.Driver
       url: jdbc:mysql://127.0.0.1:3306/springcloud_warehouse
@@ -43,17 +62,6 @@ spring:
       multipart:
         max-file-size: 10MB
         max-request-size: 100MB
-    mail:
-      host: smtp.qq.com
-      port: 587
-      username: 570225587@qq.com
-      password: kgixuuxvhqudbcgi
-      properties:
-        mail:
-          smtp:
-            auth: true
-            starttls:
-              enable: true
     server:
       servlet:
         session:
@@ -66,12 +74,6 @@ spring:
       mapper-locations: classpath:mapper/*.xml
       configuration:
         log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-
-# Eureka Client Configuration
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
 
 server:
   port: 8080

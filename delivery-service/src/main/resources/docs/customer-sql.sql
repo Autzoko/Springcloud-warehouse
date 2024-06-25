@@ -1,9 +1,9 @@
 SET FOREIGN_KEY_CHECKS = 0;
 
-CREATE TABLE `warehouse_user` (
+CREATE TABLE `customer` (
     `id` BIGINT NOT NULL AUTO_INCREMENT COMMENT 'user id',
     `name` VARCHAR(32) NOT NULL COMMENT 'username',
-    `address` VARCHAR(512) DEFAULT NULL COMMENT 'user address',
+    `address` VARCHAR(512) DEFAULT NULL COMMENT 'address',
     `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'user create time',
     `update_time` TIMESTAMP NULL DEFAULT NULL COMMENT 'user info last update time',
     PRIMARY KEY (`id`) USING BTREE

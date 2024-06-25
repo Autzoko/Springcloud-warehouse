@@ -20,8 +20,5 @@ public interface NormalUserMapper extends BaseMapper<NormalUser> {
     @Select("SELECT * FROM user WHERE email = #{email}")
     NormalUser getByEmail(String email);
 
-
-    void updateUserByEmail(NormalUser normalUser);
-
     void updateLastLoginTime(@Param("email") String email, @Param("lastLoginTime") LocalDateTime lastLoginTime);
 }

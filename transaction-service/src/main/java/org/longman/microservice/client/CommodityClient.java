@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Component
-@FeignClient(name = "warehouse-warehouse-service")
+@FeignClient(name = "warehouse-service")
 public interface CommodityClient {
     @PutMapping("/commodity/update-stock")
     ResponseEntity<Object> updateStock(@RequestParam(name = "id") String id, @RequestParam(name = "stock") Long stock);

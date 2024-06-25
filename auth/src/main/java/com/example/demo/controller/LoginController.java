@@ -2,19 +2,22 @@ package com.example.demo.controller;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.JWTVerifier;
-import com.example.demo.po.*;
+import com.example.demo.po.AuthResponse;
+import com.example.demo.po.NormalUser;
+import com.example.demo.po.Result;
 import com.example.demo.service.NormalUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @RestController
@@ -22,6 +25,9 @@ import java.util.Date;
 public class LoginController {
     @Autowired
     private NormalUserService userService;
+
+    @Autowired
+    private RedisTemplate<String, Object> redisTemplate;
 
     private final String secretKey = "yourSecretKey";
     private final long accessTokenExpiration = 3600000; // 1 hour
@@ -38,12 +44,17 @@ public class LoginController {
             // 7 days
             long refreshTokenExpiration = 604800000;
             String refreshToken = generateToken(nUid, refreshTokenExpiration);
+
+            // 缓存 Token
+            cacheToken(nUid, accessToken, refreshToken, accessTokenExpiration, refreshTokenExpiration);
+
             AuthResponse authResponse = new AuthResponse(accessToken, refreshToken);
             return ResponseEntity.ok(Result.success(authResponse));
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Result.error(HttpStatus.UNAUTHORIZED.value(), "Authentication failed"));
         }
     }
+
     @PostMapping("/user/refreshToken")
     @ResponseBody
     public ResponseEntity<Result> userRefreshToken(@RequestBody AuthResponse refreshTokenRequest) {
@@ -52,30 +63,21 @@ public class LoginController {
         // Validate the refresh token
         if (isValidToken(refreshToken)) {
             String nUid = getUidFromToken(refreshToken);
+            String cachedRefreshToken = (String) redisTemplate.opsForValue().get("refreshToken:" + nUid);
 
-            // Generate a new access token
-            String newAccessToken = generateToken(nUid, accessTokenExpiration);
+            if (cachedRefreshToken != null && cachedRefreshToken.equals(refreshToken)) {
+                // Generate a new access token
+                String newAccessToken = generateToken(nUid, accessTokenExpiration);
 
-            // Return the new access token and position in the response
-            AuthResponse authResponse = new AuthResponse(newAccessToken, refreshToken);
-            return ResponseEntity.ok(Result.success(authResponse));
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Result.error(HttpStatus.UNAUTHORIZED.value(), "Invalid refresh token"));
-        }
-    }
+                // 缓存新的 access token
+                redisTemplate.opsForValue().set("accessToken:" + nUid, newAccessToken, accessTokenExpiration, TimeUnit.MILLISECONDS);
 
-    @GetMapping("/validateToken")
-    public ResponseEntity<String> validateToken(@RequestParam("token") String token) {
-        try {
-            String uid = extractUserIdFromToken(token);
-            if (uid != null) {
-                return ResponseEntity.ok(uid);
+                // Return the new access token and position in the response
+                AuthResponse authResponse = new AuthResponse(newAccessToken, refreshToken);
+                return ResponseEntity.ok(Result.success(authResponse));
             }
-        } catch (JWTDecodeException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
-
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Result.error(HttpStatus.UNAUTHORIZED.value(), "Invalid refresh token"));
     }
 
     public String getUidFromToken(String token) {
@@ -89,7 +91,6 @@ public class LoginController {
             return null;
         }
     }
-
 
     private String generateToken(String uid, long expiration) {
         Date expirationDate = new Date(System.currentTimeMillis() + expiration);
@@ -111,16 +112,8 @@ public class LoginController {
         }
     }
 
-    private String extractUserIdFromToken(String token) {
-        try {
-            Algorithm algorithm = Algorithm.HMAC256(secretKey);
-            return JWT.require(algorithm)
-                    .build()
-                    .verify(token)
-                    .getSubject();
-        } catch (JWTDecodeException e) {
-            return null;
-        }
+    private void cacheToken(String uid, String accessToken, String refreshToken, long accessTokenExpiration, long refreshTokenExpiration) {
+        redisTemplate.opsForValue().set("accessToken:" + uid, accessToken, accessTokenExpiration, TimeUnit.MILLISECONDS);
+        redisTemplate.opsForValue().set("refreshToken:" + uid, refreshToken, refreshTokenExpiration, TimeUnit.MILLISECONDS);
     }
-
 }

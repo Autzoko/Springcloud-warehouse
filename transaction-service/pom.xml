@@ -20,6 +20,11 @@
             <version>3.2.6</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+        </dependency>
+
         <!-- druid sql pool -->
         <dependency>
             <groupId>com.alibaba</groupId>

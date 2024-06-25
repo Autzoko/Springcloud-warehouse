@@ -5,6 +5,7 @@ import com.example.demo.mapper.NormalUserMapper;
 import com.example.demo.po.NormalUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.Random;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class NormalUserServiceImpl implements NormalUserService {
@@ -24,24 +26,25 @@ public class NormalUserServiceImpl implements NormalUserService {
     @Value("${spring.mail.username}")
     private String from;
 
+    @Autowired
+    private RedisTemplate<String, Object> redisTemplate;
 
     @Override
     public boolean sendMimeMail(String email) {
         if (isEmailTaken(email)){
             return false;
         }
-        NormalUser normalUser = new NormalUser();
         try {
             SimpleMailMessage mailMessage = new SimpleMailMessage();
             mailMessage.setSubject("验证码邮件");
             String code = randomCode();
-            normalUser.setEmail(email);
-            normalUser.setCode(code);
-            mailMessage.setText("您收到的验证码是：" + code);
+            mailMessage.setText("您收到的验证码是：" + code +"验证码有效时间为五分钟");
             mailMessage.setTo(email);
             mailMessage.setFrom(from);
             mailSender.send(mailMessage);
-            userMapper.addUser(normalUser);
+
+            // 存储到 Redis，设置5分钟过期
+            redisTemplate.opsForValue().set("emailCode:" + email, code, 5, TimeUnit.MINUTES);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -63,17 +66,21 @@ public class NormalUserServiceImpl implements NormalUserService {
     @Override
     public void addUser(NormalUser normalUser) {
         String email = normalUser.getEmail();
-        String newCode = normalUser.getCode();
-        String password = normalUser.getPassword();
-        String code = userMapper.getByEmail(email).getCode();
-        if(newCode.equals(code)) {
-            String userId = generateUniqueUserId();
-            normalUser.setUid(userId);
-            normalUser.setPassword(password);
-            normalUser.setCreatetime(LocalDateTime.now());
-            userMapper.updateUserByEmail(normalUser);
+        String storedCode = (String) redisTemplate.opsForValue().get("emailCode:" + email);
+
+        if (storedCode == null || !storedCode.equals(normalUser.getCode())) {
+            System.out.println(normalUser.getCode());
+            System.out.println(storedCode);
+            throw new RuntimeException("验证码错误或已过期");
+
         }
+
+        String userId = generateUniqueUserId();
+        normalUser.setUid(userId);
+        normalUser.setCreatetime(LocalDateTime.now());
+        userMapper.addUser(normalUser);
     }
+
 
 
     private String generateUniqueUserId() {
